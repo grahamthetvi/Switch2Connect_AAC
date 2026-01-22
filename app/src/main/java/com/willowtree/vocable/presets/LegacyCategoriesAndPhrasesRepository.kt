@@ -5,6 +5,7 @@ import com.willowtree.vocable.room.CategoryDto
 import com.willowtree.vocable.room.CategoryLocalizedName
 import com.willowtree.vocable.room.CategorySortOrder
 import com.willowtree.vocable.room.PhraseDto
+import com.willowtree.vocable.room.StoredCategoryHidden
 import com.willowtree.vocable.room.VocableDatabase
 import com.willowtree.vocable.utils.locale.LocalesWithText
 import kotlinx.coroutines.flow.Flow
@@ -48,6 +49,6 @@ class LegacyCategoriesAndPhrasesRepository(
     }
 
     override suspend fun updateCategoryHidden(categoryId: String, hidden: Boolean) {
-        TODO("Not yet implemented")
+        database.categoryDao().updateCategoryHidden(StoredCategoryHidden(categoryId, hidden))
     }
 }

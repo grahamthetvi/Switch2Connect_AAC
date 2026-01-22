@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.view.GestureDetector
+import android.view.InputDevice
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -99,6 +100,11 @@ class PresetsFragment : BaseFragment<FragmentPresetsBinding>() {
 
         // Apply gesture detector to the symbol grid
         binding.symbolGrid?.setOnTouchListener { _, event ->
+            val isTouchscreen = event.isFromSource(InputDevice.SOURCE_TOUCHSCREEN) &&
+                event.getToolType(0) == MotionEvent.TOOL_TYPE_FINGER
+            if (!isTouchscreen) {
+                return@setOnTouchListener false
+            }
             gestureDetector.onTouchEvent(event)
             true
         }

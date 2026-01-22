@@ -213,6 +213,8 @@ class EyeGazeTrackingViewModel(
     // Gaze offset for recentering (applied before amplification)
     private var gazeOffsetX: Float = 0f
     private var gazeOffsetY: Float = 0f
+    private var lastRawGazeX: Float? = null
+    private var lastRawGazeY: Float? = null
 
     // LiveData for recenter events (for UI feedback)
     private val liveRecenterEvent = MutableLiveData<RecenterSource?>()
@@ -417,9 +419,11 @@ class EyeGazeTrackingViewModel(
         // Update gaze offset to make current position the new center
         // The offset is subtracted from raw gaze, so if looking right (+0.2), offset becomes +0.2
         // Next time we look at +0.2, it becomes 0 (center)
-        if (currentGazeX != null && currentGazeY != null) {
-            gazeOffsetX = currentGazeX
-            gazeOffsetY = currentGazeY
+        val recenterX = currentGazeX ?: lastRawGazeX
+        val recenterY = currentGazeY ?: lastRawGazeY
+        if (recenterX != null && recenterY != null) {
+            gazeOffsetX = recenterX
+            gazeOffsetY = recenterY
         }
 
         // Reset filters so cursor smoothly moves to center
@@ -592,6 +596,8 @@ class EyeGazeTrackingViewModel(
 
         val rawX = gazeResult.gazeX
         val rawY = gazeResult.gazeY
+        lastRawGazeX = rawX
+        lastRawGazeY = rawY
 
         // Post raw gaze for calibration to use
         liveRawGaze.postValue(Pair(rawX, rawY))
@@ -845,6 +851,8 @@ class EyeGazeTrackingViewModel(
 
         val rawX = gazeResult.gazeX
         val rawY = gazeResult.gazeY
+        lastRawGazeX = rawX
+        lastRawGazeY = rawY
 
         // Post raw gaze for calibration to use
         liveRawGaze.postValue(Pair(rawX, rawY))
