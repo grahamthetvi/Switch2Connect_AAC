@@ -7,6 +7,9 @@ google-services = "4.4.3"
 crashlytics = "3.0.6"
 androidx-test = "1.7.0"
 koin = "4.1.0"
+koin-core = "4.1.0"
+serialization = "1.7.3"
+sqldelight = "2.0.2"
 appcompat = "1.7.1"
 core-ktx = "1.16.0"
 lifecycle-livedata-ktx = "2.9.2"
@@ -86,6 +89,13 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
+# KMP Dependencies
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin-core" }
+sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-native-driver = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+sqldelight-coroutines-extensions = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+
 androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 inflationx-calligraphy = { group = "io.github.inflationx", name = "calligraphy3", version.ref = "calligraphy3" }
 inflationx-viewpump = { group = "io.github.inflationx", name = "viewpump", version.ref = "viewpump" }
@@ -131,3 +141,7 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+# KMP Plugins
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

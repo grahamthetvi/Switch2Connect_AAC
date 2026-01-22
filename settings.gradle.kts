@@ -20,3 +20,4 @@ rootProject.name = "vocable-android"
 
 include(":app")
 include(":basetest")
+include(":shared")
